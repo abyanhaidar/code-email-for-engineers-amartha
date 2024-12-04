@@ -10,11 +10,11 @@ async function main() {
   const transactionData = await readCsv('transaction.csv', startDate, endDate)
   const bankStatementData = await readCsv('bank_statement.csv', startDate, endDate)
 
-  /** reconcile
+  /** Reconcile
    */
   const output = reconcileData(transactionData, bankStatementData)
 
-  /** output
+  /** Output
    */
   console.log(output)
   return output
@@ -29,7 +29,6 @@ async function readCsv(path, startDate, endDate) {
       .pipe(
         csvParser({
           mapHeaders: ({ header }) => header.trim(),
-          find(predicate, thisArg) {}
         })
       )
       .on('data', (row) => {
